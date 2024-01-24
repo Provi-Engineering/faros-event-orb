@@ -46,4 +46,4 @@ steps:
         FAROS_START_TIME: <<parameters.start_time>>
         FAROS_END_TIME: <<parameters.end_time>>
         FAROS_SHA: <<parameters.sha>>
-      command: <<include(scripts/report-deploy.sh)>>
+      command: <<include(scripts/report_deploy.sh)>>
