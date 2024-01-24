@@ -34,6 +34,7 @@ SendEvent() {
     bash <(curl -s https://raw.githubusercontent.com/faros-ai/faros-events-cli/v0.6.9/faros_event.sh) CD \
       --community_edition \
       --url "$HASURA_URL_DEFAULT" \
+      --hasura_admin_secret "$HASURA_ADMIN_SECRET_DEFAULT" \
       --commit "github://$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$SHA1" \
       --deploy "$FAROS_SOURCE://$FAROS_APPLICATION/$FAROS_ENVIRONMENT/$CIRCLE_BUILD_NUM" \
       --deploy_status "$FAROS_STATUS" \
