@@ -15,7 +15,7 @@ usage:
             command: make helm/deploy
         - faros-event/report_deploy:
             source: helm
-            application: speedrail
+            application: test-app
             environment: Prod
   workflows:
     deploy_and_notify:
