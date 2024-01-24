@@ -1,5 +1,5 @@
 description: |
-  Using the report-deploy command to send an event to faros on a production helm deployment of speedrail.
+  Using the report-deploy command to send an event to faros on a production helm deployment.
 usage:
   version: 2.1
   orbs:
