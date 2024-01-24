@@ -51,5 +51,7 @@ workflows:
           requires:
             - orb-tools/pack
             - command-test
-          context: orb-publishing
+          context:
+            - orb-publishing
+            - faros-event-reporting
           filters: *release-filters
