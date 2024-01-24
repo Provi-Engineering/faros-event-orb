@@ -28,7 +28,11 @@ jobs:
     steps:
       - checkout
       # Run your orb's commands to validate them.
-      - faros-event-orb/greet
+      - faros-event-orb/report_deploy
+          source: test
+          application: test-app
+          environment: Sandbox
+
 workflows:
   test-deploy:
     jobs:
