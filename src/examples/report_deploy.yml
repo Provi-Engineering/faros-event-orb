@@ -1,0 +1,25 @@
+description: |
+  Using the report-deploy command to send an event to faros on a production helm deployment.
+usage:
+  version: 2.1
+  orbs:
+    faros-event: provi/faros-event@0.1
+  jobs:
+    deploy:
+      docker:
+        - image: cimg/python:3.10.7
+      steps:
+        - checkout
+        - run:
+            name: Deploy
+            command: make helm/deploy
+        - faros-event/report_deploy:
+            source: helm
+            application: test-app
+            environment: Prod
+  workflows:
+    deploy_and_notify:
+      jobs:
+        - deploy:
+            context:
+              - faros-event-reporting

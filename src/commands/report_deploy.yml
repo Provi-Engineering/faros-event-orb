@@ -1,0 +1,49 @@
+description: >
+  Report a deployment event to Faros CE.
+  The environment variables HASURA_ADMIN_SECRET_DEFAULT and HASURA_URL_DEFAULT must be set for this orb to work.
+
+parameters:
+  application:
+    type: string
+    description: "The application that was deployed."
+  source:
+    type: string
+    default: "unknown"
+    description: "The source system that executed the deployment e.g. 'helm' or 'capistrano'."
+  environment:
+    type: enum
+    enum: ["Prod", "Staging", "QA", "Dev", "Sandbox", "Canary", "Custom"]
+    default: "Prod"
+    description: "The environment to which the deployment occurred."
+  status:
+    type: enum
+    enum: ["Success", "Failed", "Canceled", "Queued", "Running", "RolledBack", "Custom"]
+    default: "Success"
+    description: "The outcome of the deployment."
+  start_time:
+    type: string
+    default: "Now"
+    description: "The deployment start time as an ISO-8601 date-time string, millis since epoch, or 'Now'."
+  end_time:
+    type: string
+    default: "Now"
+    description: "The deployment end time as an ISO-8601 date-time string, millis since epoch, or 'Now'."
+  sha:
+    type: string
+    default: $CIRCLE_SHA1
+    description: "Env var or string with commit sha of the code that was deployed."
+
+
+steps:
+  - run:
+      when: on_success
+      name: Faros - Report Deployment
+      environment:
+        FAROS_APPLICATION: <<parameters.application>>
+        FAROS_SOURCE: <<parameters.source>>
+        FAROS_ENVIRONMENT: <<parameters.environment>>
+        FAROS_STATUS: <<parameters.status>>
+        FAROS_START_TIME: <<parameters.start_time>>
+        FAROS_END_TIME: <<parameters.end_time>>
+        FAROS_SHA: <<parameters.sha>>
+      command: <<include(scripts/report_deploy.sh)>>
