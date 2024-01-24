@@ -1,6 +1,6 @@
 description: >
   Report a deployment event to Faros CE.
-  The environment variables HASURA_ADMIN_SECRET_DEFAULT and HASURA_URL_DEFAULT must be set for this orb to work. 
+  The environment variables HASURA_ADMIN_SECRET_DEFAULT and HASURA_URL_DEFAULT must be set for this orb to work.
 
 parameters:
   application:
@@ -17,7 +17,7 @@ parameters:
     description: "The environment to which the deployment occurred."
   status:
     type: enum
-    enum: ["Success", "Failed", "Canceled", "Queued", "Running", "Unknown", "Custom"]
+    enum: ["Success", "Failed", "Canceled", "Queued", "Running", "RolledBack", "Custom"]
     default: "Success"
     description: "The outcome of the deployment."
   start_time:
