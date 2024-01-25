@@ -3,7 +3,7 @@ description: |
 usage:
   version: 2.1
   orbs:
-    faros-event: provi/faros-event@0.1
+    faros: provi/faros-event-orb@0.1.1
   jobs:
     deploy:
       docker:
@@ -13,7 +13,7 @@ usage:
         - run:
             name: Deploy
             command: make helm/deploy
-        - faros-event/report_deploy:
+        - faros/report_deploy:
             source: helm
             application: test-app
             environment: Prod
